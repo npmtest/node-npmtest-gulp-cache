@@ -1,0 +1,917 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-gulp-cache/node_modules/gulp-cache/lib/TaskProxy.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-gulp-cache">npmtest-gulp-cache (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-gulp-cache/node_modules/gulp-cache/lib/TaskProxy.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">11.83% <small>(11 / 93)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 48)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 21)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">11.83% <small>(11 / 93)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-gulp-cache/node_modules/gulp-cache/lib/</a> &#187; TaskProxy.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var crypto = require('crypto');
+&nbsp;
+var objectAssign = require('object-assign');
+var objectOmit = require('object.omit');
+var Bluebird = require('bluebird');
+var tryJsonParse = require('try-json-parse');
+&nbsp;
+var TaskProxy = <span class="fstat-no" title="function not covered" >function(opts) {</span>
+<span class="cstat-no" title="statement not covered" >  objectAssign(this, {</span>
+    task: opts.task,
+    file: opts.file,
+    opts: opts.opts,
+    originalPath: opts.file.path
+  });
+};
+&nbsp;
+<span class="fstat-no" title="function not covered" >function makeHash(key) {</span>
+<span class="cstat-no" title="statement not covered" >  return crypto.createHash('md5').update(key).digest('hex');</span>
+}
+&nbsp;
+objectAssign(TaskProxy.prototype, {
+  processFile: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >    var self = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this._checkForCachedValue().then(<span class="fstat-no" title="function not covered" >function(cached) {</span></span>
+      // If we found a cached value
+      // The path of the cache key should also be identical to the original one when the file path changed inside the task
+<span class="cstat-no" title="statement not covered" >      if (cached.value &amp;&amp; (!cached.value.filePathChangedInsideTask || cached.value.originalPath === self.file.path)) {</span>
+        // Extend the cached value onto the file, but don't overwrite original path info
+<span class="cstat-no" title="statement not covered" >        var file = objectAssign(</span>
+          self.file,
+          objectOmit(cached.value, ['cwd', 'path', 'base', 'stat', 'history'])
+        );
+        // Restore the file path if it was set
+<span class="cstat-no" title="statement not covered" >        if (cached.value.path &amp;&amp; cached.value.filePathChangedInsideTask) {</span>
+<span class="cstat-no" title="statement not covered" >          file.path = cached.value.path;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return file;</span>
+      }
+&nbsp;
+      // Otherwise, run the proxied task
+<span class="cstat-no" title="statement not covered" >      return self._runProxiedTaskAndCache(cached.key);</span>
+    });
+  },
+&nbsp;
+  removeCachedResult: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >    var self = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this._getFileKey().then(<span class="fstat-no" title="function not covered" >function(cachedKey) {</span></span>
+<span class="cstat-no" title="statement not covered" >      var removeCached = Bluebird.promisify(self.opts.fileCache.removeCached, {</span>
+        context: self.opts.fileCache
+      });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return removeCached(self.opts.name, cachedKey);</span>
+    });
+  },
+&nbsp;
+  _getFileKey: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >    var getKey = this.opts.key;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (typeof getKey === 'function' &amp;&amp; getKey.length === 2) {</span>
+<span class="cstat-no" title="statement not covered" >      getKey = Bluebird.promisify(getKey.bind(this.opts));</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return Bluebird.resolve(getKey(this.file)).then(<span class="fstat-no" title="function not covered" >function(key) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (!key) {</span>
+<span class="cstat-no" title="statement not covered" >        return key;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return makeHash(key);</span>
+    });
+  },
+&nbsp;
+  _checkForCachedValue: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >    var self = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this._getFileKey().then(<span class="fstat-no" title="function not covered" >function(key) {</span></span>
+      // If no key returned, bug out early
+<span class="cstat-no" title="statement not covered" >      if (!key) {</span>
+<span class="cstat-no" title="statement not covered" >        return {</span>
+          key: key,
+          value: null
+        };
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      var getCached = Bluebird.promisify(self.opts.fileCache.getCached.bind(self.opts.fileCache));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return getCached(self.opts.name, key).then(<span class="fstat-no" title="function not covered" >function(cached) {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (!cached) {</span>
+<span class="cstat-no" title="statement not covered" >          return {</span>
+            key: key,
+            value: null
+          };
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var parsedContents = tryJsonParse(cached.contents);</span>
+<span class="cstat-no" title="statement not covered" >        if (parsedContents === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >          parsedContents = {cached: cached.contents};</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (self.opts.restore) {</span>
+<span class="cstat-no" title="statement not covered" >          parsedContents = self.opts.restore(parsedContents);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return {</span>
+          key: key,
+          value: parsedContents
+        };
+      });
+    });
+  },
+&nbsp;
+  _runProxiedTaskAndCache: <span class="fstat-no" title="function not covered" >function(cachedKey) {</span>
+<span class="cstat-no" title="statement not covered" >    var self = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return self._runProxiedTask().then(<span class="fstat-no" title="function not covered" >function(result) {</span></span>
+      // If this wasn't a success, continue to next task
+      // TODO: Should this also offer an async option?
+<span class="cstat-no" title="statement not covered" >      if (self.opts.success !== true &amp;&amp; !self.opts.success(result)) {</span>
+<span class="cstat-no" title="statement not covered" >        return result;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return self._storeCachedResult(cachedKey, result).then(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >        return result;</span>
+      });
+    });
+  },
+&nbsp;
+  _runProxiedTask: <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >    var self = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return new Bluebird(<span class="fstat-no" title="function not covered" >function(resolve, reject) {</span></span>
+<span class="fstat-no" title="function not covered" >      function handleError(err) {</span>
+        // TODO: Errors will step on each other here
+&nbsp;
+        // Reduce the maxListeners back down
+<span class="cstat-no" title="statement not covered" >        self.task.setMaxListeners(self.task._maxListeners - 1);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        reject(err);</span>
+      }
+&nbsp;
+<span class="fstat-no" title="function not covered" >      function handleData(datum) {</span>
+        // Wait for data (can be out of order, so check for matching file we wrote)
+<span class="cstat-no" title="statement not covered" >        if (self.file !== datum) {</span>
+<span class="cstat-no" title="statement not covered" >          return;</span>
+        }
+&nbsp;
+        // Be good citizens and remove our listeners
+<span class="cstat-no" title="statement not covered" >        self.task.removeListener('error', handleError);</span>
+<span class="cstat-no" title="statement not covered" >        self.task.removeListener('data', handleData);</span>
+&nbsp;
+        // Reduce the maxListeners back down
+<span class="cstat-no" title="statement not covered" >        self.task.setMaxListeners(self.task._maxListeners - 2);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        resolve(datum);</span>
+      }
+&nbsp;
+      // Bump up max listeners to prevent memory leak warnings
+<span class="cstat-no" title="statement not covered" >      var currMaxListeners = self.task._maxListeners || 0;</span>
+<span class="cstat-no" title="statement not covered" >      self.task.setMaxListeners(currMaxListeners + 2);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      self.task.on('data', handleData);</span>
+<span class="cstat-no" title="statement not covered" >      self.task.once('error', handleError);</span>
+&nbsp;
+      // Run through the other task and grab output (or error)
+      // Not sure if a _.defer is necessary here
+<span class="cstat-no" title="statement not covered" >      self.task.write(self.file);</span>
+    });
+  },
+&nbsp;
+  _getValueFromResult: <span class="fstat-no" title="function not covered" >function(result) {</span>
+<span class="cstat-no" title="statement not covered" >    var getValue;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (typeof this.opts.value !== 'function') {</span>
+<span class="cstat-no" title="statement not covered" >      if (typeof this.opts.value === 'string') {</span>
+<span class="cstat-no" title="statement not covered" >        getValue = {};</span>
+<span class="cstat-no" title="statement not covered" >        getValue[this.opts.value] = result[this.opts.value];</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return Bluebird.resolve(getValue);</span>
+    } else <span class="cstat-no" title="statement not covered" >if (this.opts.value.length === 2) {</span>
+      // Promisify if passed a node style function
+<span class="cstat-no" title="statement not covered" >      getValue = Bluebird.promisify(this.opts.value.bind(this.opts));</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      getValue = this.opts.value;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return Bluebird.resolve(getValue(result));</span>
+  },
+&nbsp;
+  _storeCachedResult: <span class="fstat-no" title="function not covered" >function(key, result) {</span>
+<span class="cstat-no" title="statement not covered" >    var self = this;</span>
+&nbsp;
+    // If we didn't have a cachedKey, skip caching result
+<span class="cstat-no" title="statement not covered" >    if (!key) {</span>
+<span class="cstat-no" title="statement not covered" >      return Bluebird.resolve(result);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this._getValueFromResult(result).then(<span class="fstat-no" title="function not covered" >function(value) {</span></span>
+<span class="cstat-no" title="statement not covered" >      var val;</span>
+<span class="cstat-no" title="statement not covered" >      var addCached = Bluebird.promisify(self.opts.fileCache.addCached.bind(self.opts.fileCache));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (typeof value !== 'string') {</span>
+<span class="cstat-no" title="statement not covered" >        if (value &amp;&amp; typeof value === 'object' &amp;&amp; Buffer.isBuffer(value.contents)) {</span>
+          // Shallow copy so "contents" can be safely modified
+<span class="cstat-no" title="statement not covered" >          val = objectAssign({}, value);</span>
+<span class="cstat-no" title="statement not covered" >          val.contents = val.contents.toString('utf8');</span>
+        }
+&nbsp;
+        // Check if the task changed the file path
+<span class="cstat-no" title="statement not covered" >        if (value.path !== self.originalPath) {</span>
+<span class="cstat-no" title="statement not covered" >          value.filePathChangedInsideTask = true;</span>
+        }
+&nbsp;
+        // Keep track of the original path
+<span class="cstat-no" title="statement not covered" >        value.originalPath = self.originalPath;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        val = JSON.stringify(value, null, 2);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        val = value;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return addCached(self.opts.name, key, val);</span>
+    });
+  }
+});
+&nbsp;
+module.exports = TaskProxy;
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Thu Apr 20 2017 04:25:17 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
